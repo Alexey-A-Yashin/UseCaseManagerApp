@@ -1,0 +1,81 @@
+﻿@page "/user/create"
+@page "/user/edit/{Id:int}"
+
+@inject IUsersRepository _usersRepository
+@inject NavigationManager _navigationManager
+
+<div class="row my-2">
+    <h3 class="card-title text-primary mb-3">@Caption пользователя</h3>
+    <div class="col-md-10">
+        @if (IsLoading)
+        {
+            <div class="text-center">
+                <img src="images/loading.gif" />
+            </div>
+        }
+        else
+        {
+            <EditForm Model="user" OnValidSubmit="ModifyUser">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <div class="form-group col-md-4">
+                    <label>Идентификатор</label>
+                    <ValidationMessage For="()=>user.id"></ValidationMessage>
+                    <InputNumber @bind-Value="user.id" class="form-control"></InputNumber>
+                </div>
+                <div class="form-group">
+                    <label>Имя</label>
+                    <ValidationMessage For="()=>user.name"></ValidationMessage>
+                    <InputText @bind-Value="user.name" class="form-control"></InputText>
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Возраст</label>
+                    <ValidationMessage For="()=>user.age"></ValidationMessage>
+                    <InputNumber @bind-Value="user.age" class="form-control"></InputNumber>
+                </div>
+                <div class="form-group py-2">
+                    <button class="btn btn-primary">@Caption</button>
+                    <NavLink href="users" class="btn btn-secondary">Назад к списку</NavLink>
+                </div>
+            </EditForm>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    private UserUCM user { get; set; } = new UserUCM();
+    private string Caption { get; set; } = "Добавить";
+    private bool IsLoading { get; set; } = true;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await LoadUser();
+    }
+
+    private async Task LoadUser()
+    {
+        if (Id > 0)
+            Caption = "Обновить";
+        user = await _usersRepository.Get(Id);
+        IsLoading = false;
+    }
+
+    private async Task ModifyUser()
+    {
+        try
+        {
+            if (Id == 0)            
+                await _usersRepository.Create(user);            
+            else            
+                await _usersRepository.Update(user);
+                
+            _navigationManager.NavigateTo("users");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);           
+        }
+    }
+}

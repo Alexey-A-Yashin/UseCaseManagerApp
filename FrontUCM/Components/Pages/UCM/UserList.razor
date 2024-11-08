@@ -1,0 +1,88 @@
+﻿@page "/users"
+@inject IUsersRepository _usersRepository
+
+<div class="row mt-4">
+    <div class="col-6">
+        <h4 class="card-title text-primary">Список пользователей</h4>
+    </div>
+    <div class="col-4 offset-2">
+        <a href="user/create" class="btn btn-primary form-control">Новый пользователь</a>
+    </div>
+    <div class="col-12 p-3">
+        @if (Users.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Идентификатор</th>
+                            <th>Имя</th>
+                            <th>Возраст</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Users)
+                        {
+                            <tr>
+                                <td>
+                                    @item.id
+                                </td>
+                                <td>
+                                    @item.name
+                                </td>
+                                <td>
+                                    @item.age
+                                </td>
+                                <td>
+                                    <NavLink href="@($"user/edit/{item.id}")" class="btn btn-info m-1">Изменить</NavLink>
+                                    <button class="btn btn-danger m-1" @onclick="()=>DeleteUser(item.id)">Удалить</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            if (IsLoading)
+            {
+                <div class="text-center">
+                    <img src="images/loading.gif" />
+                </div>
+            }
+            else
+            {
+                <p>Записей не найдено.</p>
+            }
+        }
+    </div>
+</div>
+
+@code {
+    private IEnumerable<UserUCM> Users { get; set; } = new List<UserUCM>();
+    private bool IsLoading { get; set; } = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadUsers();
+    }
+
+    private async Task LoadUsers()
+    {
+        Users = await _usersRepository.GetAll();
+        IsLoading = false;
+    }
+
+    private async void DeleteUser(int id)
+    {
+        IsLoading = true;
+        if (id > 0)
+        {
+            await _usersRepository.Delete(id);
+            await LoadUsers();
+            StateHasChanged();
+        }
+        IsLoading = false;
+    }
+}
