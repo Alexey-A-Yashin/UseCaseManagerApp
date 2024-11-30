@@ -1,3 +1,5 @@
+using DbUCM;
+using DbUCM.Repositories;
 using FrontUCM.Components;
 using Microsoft.EntityFrameworkCore;
 using Radzen;
@@ -8,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddRadzenComponents();
-builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("UcmDbConnection")));
+builder.Services.AddDbContextPool<AppDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("UcmDbConnection")));
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 
 var app = builder.Build();

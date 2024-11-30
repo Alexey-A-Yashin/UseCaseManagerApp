@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ModelsUCM\ModelsUCM.csproj" />
+    <ProjectReference Include="..\ModelsUCM\EntitiesUCM.csproj" />
   </ItemGroup>
 
 </Project>

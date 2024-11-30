@@ -1,9 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using EntitiesUCM;
 
-public class AppDbContext : DbContext
+namespace DbUCM
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-    { }
+    public class AppDbContext : DbContext
+    {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        { }
 
-    public DbSet<UserUCM> UsersUCM { get; set; }
+        public DbSet<UserUCM> UsersUCM { get; set; }
+    }
 }
