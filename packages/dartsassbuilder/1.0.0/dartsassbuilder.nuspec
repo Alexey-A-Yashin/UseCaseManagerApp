@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>DartSassBuilder</id>
+    <version>1.0.0</version>
+    <title>DartSassBuilder</title>
+    <authors>Johan van Rensburg, Dean Wiseman</authors>
+    <owners>Dean Wiseman</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>sass.png</icon>
+    <projectUrl>https://github.com/deanwiseman/DartSassBuilder</projectUrl>
+    <description>Compile Sass files to css on project build.</description>
+    <summary>Auto build task to compile .scss/.sass files to .css</summary>
+    <tags>Sass Build DartSass SassBuilder</tags>
+    <repository type="git" url="https://github.com/deanwiseman/DartSassBuilder.git" />
+  </metadata>
+</package>

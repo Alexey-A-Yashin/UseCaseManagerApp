@@ -1,0 +1,275 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "DartSassBuilder/1.0.0": {
+        "dependencies": {
+          "CommandLineParser": "2.8.0",
+          "DartSassHost": "1.0.2",
+          "JavaScriptEngineSwitcher.V8": "3.20.10",
+          "Microsoft.ClearScript.V8.Native.linux-x64": "7.3.7",
+          "Microsoft.ClearScript.V8.Native.osx-arm64": "7.3.7",
+          "Microsoft.ClearScript.V8.Native.osx-x64": "7.3.7",
+          "Microsoft.ClearScript.V8.Native.win-x64": "7.3.7",
+          "Microsoft.ClearScript.V8.Native.win-x86": "7.3.7"
+        },
+        "runtime": {
+          "DartSassBuilder.dll": {}
+        }
+      },
+      "AdvancedStringBuilder/0.1.0": {
+        "runtime": {
+          "lib/netstandard2.0/AdvancedStringBuilder.dll": {
+            "assemblyVersion": "0.1.0.0",
+            "fileVersion": "0.1.0.0"
+          }
+        }
+      },
+      "CommandLineParser/2.8.0": {
+        "runtime": {
+          "lib/netstandard2.0/CommandLine.dll": {
+            "assemblyVersion": "2.8.0.0",
+            "fileVersion": "2.8.0.0"
+          }
+        }
+      },
+      "DartSassHost/1.0.2": {
+        "dependencies": {
+          "AdvancedStringBuilder": "0.1.0",
+          "JavaScriptEngineSwitcher.Core": "3.19.0"
+        },
+        "runtime": {
+          "lib/net6.0/DartSassHost.dll": {
+            "assemblyVersion": "1.0.2.0",
+            "fileVersion": "1.0.2.0"
+          }
+        }
+      },
+      "JavaScriptEngineSwitcher.Core/3.19.0": {
+        "dependencies": {
+          "AdvancedStringBuilder": "0.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/JavaScriptEngineSwitcher.Core.dll": {
+            "assemblyVersion": "3.19.0.0",
+            "fileVersion": "3.19.0.0"
+          }
+        },
+        "resources": {
+          "lib/netstandard2.0/ru-RU/JavaScriptEngineSwitcher.Core.resources.dll": {
+            "locale": "ru-RU"
+          }
+        }
+      },
+      "JavaScriptEngineSwitcher.V8/3.20.10": {
+        "dependencies": {
+          "AdvancedStringBuilder": "0.1.0",
+          "JavaScriptEngineSwitcher.Core": "3.19.0",
+          "Microsoft.ClearScript.V8": "7.3.7"
+        },
+        "runtime": {
+          "lib/net5.0/JavaScriptEngineSwitcher.V8.dll": {
+            "assemblyVersion": "3.20.10.0",
+            "fileVersion": "3.20.10.0"
+          }
+        },
+        "resources": {
+          "lib/net5.0/ru-RU/JavaScriptEngineSwitcher.V8.resources.dll": {
+            "locale": "ru-RU"
+          }
+        }
+      },
+      "Microsoft.ClearScript.Core/7.3.7": {
+        "runtime": {
+          "lib/net5.0/ClearScript.Core.dll": {
+            "assemblyVersion": "7.3.7.0",
+            "fileVersion": "7.3.7.0"
+          }
+        }
+      },
+      "Microsoft.ClearScript.V8/7.3.7": {
+        "dependencies": {
+          "Microsoft.ClearScript.Core": "7.3.7",
+          "Microsoft.ClearScript.V8.ICUData": "7.3.7",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/net5.0/ClearScript.V8.dll": {
+            "assemblyVersion": "7.3.7.0",
+            "fileVersion": "7.3.7.0"
+          }
+        }
+      },
+      "Microsoft.ClearScript.V8.ICUData/7.3.7": {
+        "runtime": {
+          "lib/netstandard1.0/ClearScript.V8.ICUData.dll": {
+            "assemblyVersion": "7.3.7.0",
+            "fileVersion": "7.3.7.0"
+          }
+        }
+      },
+      "Microsoft.ClearScript.V8.Native.linux-x64/7.3.7": {
+        "runtimeTargets": {
+          "runtimes/linux-x64/native/ClearScriptV8.linux-x64.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Microsoft.ClearScript.V8.Native.osx-arm64/7.3.7": {
+        "runtimeTargets": {
+          "runtimes/osx-arm64/native/ClearScriptV8.osx-arm64.dylib": {
+            "rid": "osx-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Microsoft.ClearScript.V8.Native.osx-x64/7.3.7": {
+        "runtimeTargets": {
+          "runtimes/osx-x64/native/ClearScriptV8.osx-x64.dylib": {
+            "rid": "osx-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Microsoft.ClearScript.V8.Native.win-x64/7.3.7": {
+        "runtimeTargets": {
+          "runtimes/win-x64/native/ClearScriptV8.win-x64.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "7.3.7.0"
+          }
+        }
+      },
+      "Microsoft.ClearScript.V8.Native.win-x86/7.3.7": {
+        "runtimeTargets": {
+          "runtimes/win-x86/native/ClearScriptV8.win-x86.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "7.3.7.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DartSassBuilder/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AdvancedStringBuilder/0.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IbN3r5whlJvi8MhCDPVpIb+NVScyUcKSdcJZrnoXFDyzPDISl3AbWouNBYIHRdZdfGuzqCQEhM1vkxbIKqQVaQ==",
+      "path": "advancedstringbuilder/0.1.0",
+      "hashPath": "advancedstringbuilder.0.1.0.nupkg.sha512"
+    },
+    "CommandLineParser/2.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eco2HlKQBY4Joz9odHigzGpVzv6pjsXnY5lziioMveQxr+i2Z7xYcIOMeZTgYiqnMtMAbXMXsVhrNfWO5vJS8Q==",
+      "path": "commandlineparser/2.8.0",
+      "hashPath": "commandlineparser.2.8.0.nupkg.sha512"
+    },
+    "DartSassHost/1.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SlYo8XAj9ymS4yqCpSLKYtyShqXSpDFuVOsLZD/JqCBk/4IfOdxrsvs+0kVNoELjN++K/+rWBakkVURWBJZ63w==",
+      "path": "dartsasshost/1.0.2",
+      "hashPath": "dartsasshost.1.0.2.nupkg.sha512"
+    },
+    "JavaScriptEngineSwitcher.Core/3.19.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cFZG0+8OzRP7xDgmJpVwAA9V04Y3uWlAyjP+wx801crLfZr/nw1ohJtH8kBK+m9CIUHfyR1iw2b2F8q6WW2O4w==",
+      "path": "javascriptengineswitcher.core/3.19.0",
+      "hashPath": "javascriptengineswitcher.core.3.19.0.nupkg.sha512"
+    },
+    "JavaScriptEngineSwitcher.V8/3.20.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RkTOZDA198CEOCH0AQrnoefJAGsp1pLHcTlj6jb3dnVD4tu6KQofSmYZMoe9uimE82aErrZpMi4cCr6LU5UpfA==",
+      "path": "javascriptengineswitcher.v8/3.20.10",
+      "hashPath": "javascriptengineswitcher.v8.3.20.10.nupkg.sha512"
+    },
+    "Microsoft.ClearScript.Core/7.3.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Xw0JL3kEBJow9zYCstxUr/08SqLgNclf9zoljYxJUOP4F6T6iKbbwaJ7FmEzNYMGsxgJsiAOtNcTDOVRsvN39g==",
+      "path": "microsoft.clearscript.core/7.3.7",
+      "hashPath": "microsoft.clearscript.core.7.3.7.nupkg.sha512"
+    },
+    "Microsoft.ClearScript.V8/7.3.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QkEp3kUg22h8eQMnipC2KAvJTyLbgzttavRmryBg7W7NBHi4JbROk3AvtKIhxmJt6Oybz0Czz61N2SjcMrAbGg==",
+      "path": "microsoft.clearscript.v8/7.3.7",
+      "hashPath": "microsoft.clearscript.v8.7.3.7.nupkg.sha512"
+    },
+    "Microsoft.ClearScript.V8.ICUData/7.3.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5aV5AWuXSaDzpVFSGRw92mqYs3PYxMpb4x0S1BLhQuexDvvBvLJSEbREr3AwfUVCkcaXQ6F/mS+s1c8ow3QMeg==",
+      "path": "microsoft.clearscript.v8.icudata/7.3.7",
+      "hashPath": "microsoft.clearscript.v8.icudata.7.3.7.nupkg.sha512"
+    },
+    "Microsoft.ClearScript.V8.Native.linux-x64/7.3.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-q4a9RfxLr7Kuux2i0Q/hIggoleeAxsomglGsGXx5PQ6ua20cSQneS5i0h9ziu5FqEemIw6nqIWqd1nFd5Omclw==",
+      "path": "microsoft.clearscript.v8.native.linux-x64/7.3.7",
+      "hashPath": "microsoft.clearscript.v8.native.linux-x64.7.3.7.nupkg.sha512"
+    },
+    "Microsoft.ClearScript.V8.Native.osx-arm64/7.3.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eJekE6VLgXBAfHCVP7et2G4FIRcOXMJRsVwXOMi1KtC30JtLJ6mXkx2OOnZhmGG7lRelZDfyR/jXLJaOHypKUQ==",
+      "path": "microsoft.clearscript.v8.native.osx-arm64/7.3.7",
+      "hashPath": "microsoft.clearscript.v8.native.osx-arm64.7.3.7.nupkg.sha512"
+    },
+    "Microsoft.ClearScript.V8.Native.osx-x64/7.3.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PvY/YBVctbpo4vCsD/7aH3uIhkUv1lFsoeNjDtGBxcMZb6gbsX83RPTI0VMaWDuciTXICm1H4/59q69W7r97jA==",
+      "path": "microsoft.clearscript.v8.native.osx-x64/7.3.7",
+      "hashPath": "microsoft.clearscript.v8.native.osx-x64.7.3.7.nupkg.sha512"
+    },
+    "Microsoft.ClearScript.V8.Native.win-x64/7.3.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Rkq3YMqBD+ax3dYhZ0KGa+tKifVdbokQQpwW5lmhlzb7VfKik1IcDMsWGytegB4PNJBWUEJT3bJau0e3GtGZMg==",
+      "path": "microsoft.clearscript.v8.native.win-x64/7.3.7",
+      "hashPath": "microsoft.clearscript.v8.native.win-x64.7.3.7.nupkg.sha512"
+    },
+    "Microsoft.ClearScript.V8.Native.win-x86/7.3.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LkLBll4QI+9ph/CQlgvEOxewEZxEiGr0B8KGlF3US8+41x8Dydy5C+pTq1fYgBeTqjrLxNzIbcAK+295ReMxrg==",
+      "path": "microsoft.clearscript.v8.native.win-x86/7.3.7",
+      "hashPath": "microsoft.clearscript.v8.native.win-x86.7.3.7.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
+    }
+  }
+}

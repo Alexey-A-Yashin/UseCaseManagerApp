@@ -1,0 +1,112 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <_DartSassHashCacheFile>$(IntermediateOutputPath)$(MSBuildProjectFile).DartSassBuilder.cache</_DartSassHashCacheFile>
+    <_DartSassHashChanged>false</_DartSassHashChanged>
+    <DartSassShouldBuildBasedOnSassFiles>false</DartSassShouldBuildBasedOnSassFiles>
+    <DartSassShouldBuildBasedOnSassFiles Condition=" '$(DartSassBuilderArgs)'=='' ">true</DartSassShouldBuildBasedOnSassFiles>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <!-- filter out variable files that don't get compiled -->
+    <SassFilesToCompile Include="@(SassFile)" Exclude="**/_*.scss;**/_*.sass"></SassFilesToCompile>
+  </ItemGroup>
+  
+<!--
+  Target used by dotnet-watch to resolve additional items.
+  Add target to CustomCollectWatchItems
+-->
+  <Target Name="_DartSass_CustomCollectWatchItems">
+    <ItemGroup>
+      <Watch Include="%(SassFile.FullPath)" Condition="'%(SassFile.Watch)' != 'false'" />
+    </ItemGroup>
+  </Target>
+
+<!--
+  Target to clean temporary output
+  Deletes the hash file, consider deleting the generated .css files? Scary...
+-->
+  <Target Name="DartSass_Clean"
+          BeforeTargets="BeforeClean"
+          Condition=" '$(DartSassShouldBuildBasedOnSassFiles)'=='true' ">
+    <Delete Files="$(_DartSassHashCacheFile)" />
+  </Target>
+
+<!--
+  This target calculates the hash of all files (only filename & modification timestamp, so no disk access is needed)
+  Outputs:
+     DartSassShouldBuildBasedOnSassFiles = true if hash has changed
+     DartSassBuilderDependencyHash the new hash
+-->
+  <Target Name="DartSass_DetermineBuildNeeded"  
+          BeforeTargets="BeforeBuild"  
+          Condition="'@(SassFile->Count())'!='0' and '$(DartSassShouldBuildBasedOnSassFiles)'=='true' ">
+
+    <Message Text="Evaluating Sass files" Importance="$(DartSassMessageLevel)" />
+    <PropertyGroup>
+      <_DartSass_HashFiles>@(SassFile->'%(FullPath)-%(ModifiedTime)')</_DartSass_HashFiles>
+    </PropertyGroup>
+
+    <!-- calculate hash over files & over relevant settings -->
+    <Hash ItemsToHash="$(_DartSass_HashFiles)-$(DartSassOutputStyle)">
+      <Output TaskParameter="HashResult" PropertyName="DartSassBuilderDependencyHash" />
+    </Hash>
+
+    <ReadLinesFromFile
+        File="$(_DartSassHashCacheFile)"
+        Condition="Exists('$(_DartSassHashCacheFile)')">
+      <Output
+          TaskParameter="Lines"
+          ItemName="OldDartSassBuilderDependencyHash"/>
+    </ReadLinesFromFile>
+
+    <PropertyGroup>
+      <_DartSassHashChanged Condition=" '$(DartSassBuilderDependencyHash)' != '@(OldDartSassBuilderDependencyHash)' ">true</_DartSassHashChanged>
+    </PropertyGroup>
+    
+    <Message Text="Sass hash New = $(DartSassBuilderDependencyHash)" Importance="$(DartSassMessageLevel)" />
+    <Message Text="Sass hash Old = @(OldDartSassBuilderDependencyHash)" Importance="$(DartSassMessageLevel)" />
+    <Message Text="Sass changed  = $(_DartSassHashChanged)" Importance="$(DartSassMessageLevel)" />
+  </Target>
+  
+<!-- 
+  Determines DartSassBuilderArgs based on the SassFile-items
+-->
+  <Target Name="DartSass_BuildArgsFromFileList" 
+          DependsOnTargets="DartSass_DetermineBuildNeeded"
+          BeforeTargets="BeforeBuild"  
+          Condition="'$(_DartSassHashChanged)-$(DartSassShouldBuildBasedOnSassFiles)' == 'true-true' ">
+    <PropertyGroup>
+      <_SassFileList>@(SassFilesToCompile->'&quot;%(FullPath)&quot;', ' ')</_SassFileList> <!-- all valid files, space seperated, surrounded with quotes -->
+      <DartSassBuilderArgs>files $(_SassFileList) --outputstyle $(DartSassOutputStyle) --level $(DartSassOutputLevel)</DartSassBuilderArgs>
+    </PropertyGroup>
+    <Message Text="Converted SassFile list to argument" Importance="$(DartSassMessageLevel)" />
+  </Target>
+  
+<!-- 
+  Invokes the sass tool
+-->
+  <Target Name="DartSass_Build" 
+          DependsOnTargets="DartSass_BuildArgsFromFileList"
+          BeforeTargets="BeforeBuild"  
+          Condition="'$(DartSassBuilderArgs)' != ''  ">
+    <Message Text="Invoking sass preprocessor..." Importance="$(DartSassMessageLevel)" />
+
+    <Exec Command="dotnet &quot;$(SassExe)&quot; $(DartSassBuilderArgs) "/>
+  </Target>
+
+<!-- 
+  Save the hash to file if it had changed, do this after the build so it will not skip the next build on failures
+-->
+  <Target Name="DartSass_SaveNewHash"
+          AfterTargets="DartSass_Build"
+          BeforeTargets="BeforeBuild"  
+          Condition=" '$(_DartSassHashChanged)' == 'true' ">
+    <Message Text="Sass hash: saving new..." Importance="$(DartSassMessageLevel)" />
+
+    <WriteLinesToFile File="$(_DartSassHashCacheFile)" 
+                      Lines="$(DartSassBuilderDependencyHash)" 
+                      Overwrite="True" 
+                      WriteOnlyWhenDifferent="True" />
+  </Target>
+</Project>
